@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+    <!-- Include configuration for dependencies listed in setup.py -->
+    <includeDependencies package="." />
+
+    <!-- Register the installation GenericSetup extension profile -->
+    <!-- TODO: this could be simplified to just one line:
+        <genericsetup:registerDefaultProfile /> -->
+    <genericsetup:registerProfile
+        name="default"
+        title="omdf.policy"
+        directory="profiles/default"
+        description='Policy for Mexico City Mathematical Olympiad site.'
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+</configure>

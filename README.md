@@ -1,4 +1,0 @@
-omdf.policy
-===========
-
-Policy package
