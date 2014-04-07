@@ -15,13 +15,13 @@ class TestsInstall(IntegrationTestCase):
 
     def test_portal_title(self):
         self.assertEqual(
-            u"Olimpiada Matemática del Distrito Federal",
+            "Olimpiada Matemática del Distrito Federal",
             self.portal.getProperty('title')
         )
 
     def test_portal_description(self):
         self.assertEqual(
-            u"Bienvenido a la Olimpiada Matématica",
+            "Bienvenido a la Olimpiada Matématica",
             self.portal.getProperty('description')
         )
 
