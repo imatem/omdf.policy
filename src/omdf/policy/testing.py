@@ -19,7 +19,15 @@ class OlympiadPolicyLayer(PloneSandboxLayer):
         """Set up Zope."""
         # Load ZCML
         import omdf.policy
-        self.loadZCML(package=omdf.policy)
+        self.loadZCML(package=omdf.policy, context=configurationContext)
+        # import plone.app.contenttypes
+        # self.loadZCML(
+        #     package=plone.app.contenttypes,
+        #     context=configurationContext
+        # )
+
+        # Install products that use an old-style initialize() function
+        z2.installProduct(app, 'Products.DateRecurringIndex')
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
@@ -29,6 +37,10 @@ class OlympiadPolicyLayer(PloneSandboxLayer):
     def tearDownZope(self, app):
         """Tear down Zope."""
         z2.uninstallProduct(app, 'omdf.policy')
+        # z2.uninstallProduct(app, 'plone.app.contenttypes')
+
+        # Uninstall old-style Products
+        z2.uninstallProduct(app, 'Products.DateRecurringIndex')
 
 
 FIXTURE = OlympiadPolicyLayer()
