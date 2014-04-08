@@ -57,6 +57,7 @@ setup(
         ],
         'test': [
             'mock',
+            'plone.app.robotframework',
             'plone.app.testing',
             'unittest2',
         ],

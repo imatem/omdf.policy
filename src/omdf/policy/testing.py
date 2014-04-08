@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """Base module for unittesting."""
 
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
@@ -13,21 +14,13 @@ import unittest2 as unittest
 
 class OlympiadPolicyLayer(PloneSandboxLayer):
 
-    defaultBases = (PLONE_FIXTURE,)
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE, PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
         # Load ZCML
         import omdf.policy
-        self.loadZCML(package=omdf.policy, context=configurationContext)
-        # import plone.app.contenttypes
-        # self.loadZCML(
-        #     package=plone.app.contenttypes,
-        #     context=configurationContext
-        # )
-
-        # Install products that use an old-style initialize() function
-        z2.installProduct(app, 'Products.DateRecurringIndex')
+        self.loadZCML(package=omdf.policy)
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
@@ -37,10 +30,6 @@ class OlympiadPolicyLayer(PloneSandboxLayer):
     def tearDownZope(self, app):
         """Tear down Zope."""
         z2.uninstallProduct(app, 'omdf.policy')
-        # z2.uninstallProduct(app, 'plone.app.contenttypes')
-
-        # Uninstall old-style Products
-        z2.uninstallProduct(app, 'Products.DateRecurringIndex')
 
 
 FIXTURE = OlympiadPolicyLayer()
