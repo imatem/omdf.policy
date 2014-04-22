@@ -4,6 +4,7 @@
 from omdf.policy.testing import IntegrationTestCase
 from plone.app.event.base import default_timezone
 from Products.CMFCore.utils import getToolByName
+from zope.component import getMultiAdapter
 
 import unittest2 as unittest
 
@@ -14,6 +15,7 @@ class TestsInstall(IntegrationTestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
 
     def test_product_installed(self):
         """Test if omdf.policy is installed in portal_wuickinstaller."""
@@ -27,18 +29,26 @@ class TestsInstall(IntegrationTestCase):
 
     def test_portal_title(self):
         self.assertEqual(
-            "Olimpiada Matemática del Distrito Federal",
-            self.portal.getProperty('title')
-        )
+            self.portal.getProperty('title'),
+            "Olimpiada Matemática del Distrito Federal")
 
     def test_portal_description(self):
         self.assertEqual(
-            "Bienvenido a la Olimpiada Matématica",
-            self.portal.getProperty('description')
-        )
+            self.portal.getProperty('description'),
+            "Bienvenido a la Olimpiada Matématica")
 
     def test_default_timezone(self):
         self.assertEqual(default_timezone(), 'Mexico/General')
+
+    def test_default_language(self):
+        # acording to documentation this must be in afterSetUp()
+        ltool = self.portal.portal_languages
+        ltool.setLanguageBindings()
+
+        portal_state = getMultiAdapter(
+            (self.portal, self.request), name=u'plone_portal_state')
+        current_language = portal_state.language()
+        self.assertEqual(current_language, 'es')
 
 
 def test_suite():
