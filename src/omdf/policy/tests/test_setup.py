@@ -2,6 +2,7 @@
 """Setup/installation tests for this package."""
 
 from omdf.policy.testing import IntegrationTestCase
+from plone.app.event.base import default_timezone
 from Products.CMFCore.utils import getToolByName
 
 import unittest2 as unittest
@@ -35,6 +36,9 @@ class TestsInstall(IntegrationTestCase):
             "Bienvenido a la Olimpiada Matématica",
             self.portal.getProperty('description')
         )
+
+    def test_default_timezone(self):
+        self.assertEqual(default_timezone(), 'Mexico/General')
 
 
 def test_suite():
