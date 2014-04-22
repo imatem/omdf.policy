@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
 <site>
-    <property name="title">Olimpiada Matemática del Distrito Federal</property>
-    <property name="description">Bienvenido a la Olimpiada Matématica</property>
+  <property name="title">Olimpiada Matemática del Distrito Federal</property>
+  <property name="description">Bienvenido a la Olimpiada Matématica</property>
 </site>
