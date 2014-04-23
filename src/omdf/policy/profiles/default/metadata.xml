@@ -2,5 +2,6 @@
   <version>1</version>
   <dependencies>
     <dependency>profile-plone.app.contenttypes:plone-content</dependency>
+    <dependency>profile-collective.cover:default</dependency>
   </dependencies>
 </metadata>
