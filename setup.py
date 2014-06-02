@@ -49,8 +49,6 @@ setup(
             'flake8',
             'plone.app.debugtoolbar',
             'plone.reload',
-            'Products.Clouseau',
-            'Products.DocFinderTab',
             'Products.PDBDebugMode',
             'Products.PrintingMailHost',
             'Sphinx',
