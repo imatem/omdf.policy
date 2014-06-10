@@ -42,7 +42,7 @@ setup(
         'Plone',
         'setuptools',
         'collective.cover',
-        'plone.app.contenttypes',
+        # 'plone.app.contenttypes',
     ],
     extras_require={
         'develop': [

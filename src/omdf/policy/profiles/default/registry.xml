@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <registry>
-  <records
+<!--   <records
     interface="plone.app.event.interfaces.IEventSettings"
     prefix="plone.app.event"
     >
       <value key="portal_timezone">Mexico/General</value>
-  </records>
+  </records> -->
 </registry>
