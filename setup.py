@@ -41,8 +41,6 @@ setup(
         'Pillow',
         'Plone',
         'setuptools',
-        'collective.cover',
-        # 'plone.app.contenttypes',
     ],
     extras_require={
         'develop': [
