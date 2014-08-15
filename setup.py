@@ -41,6 +41,7 @@ setup(
         'Pillow',
         'Plone',
         'setuptools',
+        'Products.Collage',
     ],
     extras_require={
         'develop': [

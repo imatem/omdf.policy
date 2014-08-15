@@ -26,7 +26,7 @@ class TestsInstall(IntegrationTestCase):
         """Test that all product dependencies are installed."""
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         # self.assertTrue(installer.isProductInstalled('plone.app.contenttypes'))
-        self.assertTrue(installer.isProductInstalled('collective.cover'))
+        self.assertTrue(installer.isProductInstalled('Collage'))
 
     def test_portal_title(self):
         self.assertEqual(
