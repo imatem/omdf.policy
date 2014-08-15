@@ -43,6 +43,7 @@ setup(
         'setuptools',
         'Products.Collage',
         'collective.collage.portlets',
+        'collective.blog.star',
     ],
     extras_require={
         'develop': [
