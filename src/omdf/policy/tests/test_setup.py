@@ -27,6 +27,8 @@ class TestsInstall(IntegrationTestCase):
         installer = getToolByName(self.portal, 'portal_quickinstaller')
         # self.assertTrue(installer.isProductInstalled('plone.app.contenttypes'))
         self.assertTrue(installer.isProductInstalled('Collage'))
+        self.assertTrue(
+            installer.isProductInstalled('collective.collage.portlets'))
 
     def test_portal_title(self):
         self.assertEqual(

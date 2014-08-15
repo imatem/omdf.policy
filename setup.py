@@ -42,6 +42,7 @@ setup(
         'Plone',
         'setuptools',
         'Products.Collage',
+        'collective.collage.portlets',
     ],
     extras_require={
         'develop': [
