@@ -18,4 +18,13 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
+    <browser:page
+        name="blog_view"
+        for="*"
+        permission="zope2.View"
+        template="blog.pt"
+        class="collective.blog.view.blog.BlogView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+        />
+
 </configure>
