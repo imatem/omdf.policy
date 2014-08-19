@@ -3,26 +3,36 @@
 <tal:folder define="plone_view here/@@plone;
                     toLocalizedTime nocall: plone_view/toLocalizedTime;">
 
-  <h1 metal:define-macro="title"
-      tal:define="kssview context/@@collage_kss_helper"
-      tal:attributes="id string:title-${kssview/getUniqueIdentifier};
-                      class python: kssview.getKssClasses('title')"
-      tal:condition="here/Title">
-    <span metal:define-slot="inside"
-          tal:replace="here/Title">title</span>
-  </h1>
+  <tal:blog-macro metal:define-macro="blog">
+    <metal:empty metal:define-slot="no_items_in_listing">
+      <p class="discreet"
+         tal:condition="not: here/objectIds"
+         i18n:translate="description_no_blog_entries">
+          There are no posts in this blog yet.
+      </p>
+    </metal:empty>
 
-  <p>
-    <span metal:define-macro="description"
-          tal:define="kssview context/@@collage_kss_helper"
-          tal:attributes="id string:description-${kssview/getUniqueIdentifier};
-                          class python: kssview.getKssClasses('description')"
-          tal:condition="here/Description">
-      <span metal:define-slot="inside"
-            tal:replace="here/Description">description</span>
-    </span>
-  </p>
+    <div id="blog-listing"
+         tal:define="batch view/batch">
+      <div metal:use-macro="here/batch_macros/macros/navigation" />
 
-  <metal:listing-macro use-macro="here/folder_listing/macros/listing" />
+      <tal:contentitem repeat="item batch">
+        <div class="blog-item"
+             tal:define="ob item/getObject">
+          <tal:block replace="structure ob/blog_item_view" />
+          <div class="comment-link"
+            tal:condition="python:view.commentsEnabled(ob)">
+            <a i18n:translate="" tal:attributes="href python:view.item_url(item)">
+              <tal:block i18n:name="comments_count" replace="python:view.commentCount(ob)"/> Comments
+            </a><p/>
+          </div>
+        </div>
+      </tal:contentitem>
+
+      <div metal:use-macro="here/batch_macros/macros/navigation" />
+
+      <span class="visualClear"><!-- --></span>
+    </div>
+  </tal:blog-macro>
 
 </tal:folder>
