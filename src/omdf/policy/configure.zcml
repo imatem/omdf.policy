@@ -19,11 +19,20 @@
         />
 
     <browser:page
-        name="blog_view"
-        for="*"
+        name="blog"
+        for="Products.ATContentTypes.content.folder.ATFolder"
         permission="zope2.View"
         template="blog.pt"
         class="collective.blog.view.blog.BlogView"
+        layer="Products.Collage.interfaces.ICollageBrowserLayer"
+        />
+
+    <browser:page
+        name="events"
+        for="plone.app.collection.collection.Collection"
+        permission="zope2.View"
+        template="events.pt"
+        class="Products.Collage.browser.views.BaseTopicView"
         layer="Products.Collage.interfaces.ICollageBrowserLayer"
         />
 
