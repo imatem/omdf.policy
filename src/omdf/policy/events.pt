@@ -1,23 +1,16 @@
 <tal:manager replace="structure provider:collage.ContentManager" />
 
 <tal:variables define="plone_view context/@@plone;
-                       toLocalizedTime nocall: plone_view/toLocalizedTime;
-                       isAnon view/isAnon;
-                       mtool view/mtool;
-                       portal_url view/portal_url;
-                       normalizeString view/normalizeString;
-                       site_properties view/site_properties">
+                       toLocalizedTime nocall: plone_view/toLocalizedTime">
 
   <div class="standard-topic"
        tal:condition="context/results">
 
-    <h2 metal:define-macro="title"
-        tal:condition="context/Title">
+    <h2 metal:define-macro="title">
       <span metal:define-slot="inside">Próximos eventos</span>
     </h2>
 
-    <tal:listing i18n:domain="plone"
-                 define="templateId string:folder_summary_view">
+    <tal:listing i18n:domain="plone">
       <metal:listing-macro use-macro="context/standard_view/macros/listing">
         <metal:entry fill-slot="entry">
 
@@ -37,13 +30,12 @@
                 Item Title
               </a>
             </h2>
-            <div metal:use-macro="context/standard_view/macros/document_byline"></div>
-            <p class="tileBody" tal:condition="item_description">
+            <p class="description" tal:condition="item_description">
               <span class="description" tal:content="item_description">
                 description
               </span>
             </p>
-            <div class="summary">
+            <div class="date-time">
               <span
                    tal:condition="python: item_sametime"
                    tal:content="string:${item_startdate} ${item_starttime}">
@@ -60,7 +52,14 @@
                 May 5
               </span>
             </div>
-            <span  tal:condition="obj/location" tal:content="item/location"/>
+            <div class="location">
+              <span  class="location" tal:condition="obj/location" tal:content="obj/location"/>
+            </div>
+            <div class="plain">
+              <metal:field use-macro="python:obj.getObject().widget('text', mode='view')">
+               Body text
+              </metal:field>
+            </div>
             <div class="visualClear"><!-- --></div>
           </div>
 
